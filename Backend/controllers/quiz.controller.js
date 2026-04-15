@@ -5,7 +5,7 @@ export const createQuiz = async (req, res) => {
     const userId = req.user.userId;
     const { title, timeLimitSec } = req.body;
     if (!title) {
-      return res.status(401).json({
+      return res.status(400).json({
         success: false,
         message: "Title Required",
         status: "failed",
@@ -17,14 +17,14 @@ export const createQuiz = async (req, res) => {
       createdBy: userId,
     });
     await quiz.populate("createdBy", "email role");
-    return res.status(401).json({
+    return res.status(201).json({
       success: true,
       message: "Quiz Created Successfully",
       status: "success",
       data: quiz,
     });
   } catch (error) {
-    return res.status(401).json({
+    return res.status(500).json({
       success: false,
       message: "Error - Create Quiz",
       status: "failed",

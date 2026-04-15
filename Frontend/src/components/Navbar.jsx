@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="shrink-0 flex items-center">
-            <h1 className="text-xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <h1 className="text-xl font-bold bg-blue-600 bg-clip-text text-transparent">
               QuizApp
             </h1>
           </div>
@@ -30,7 +30,7 @@ const Navbar = () => {
             {isCheckingAuth ? null : currentUser ? (
               <>
                 <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-linear-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg ring-2 ring-white/50">
+                  <div className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center shadow-lg ring-2 ring-white/50">
                     <User className="w-5 h-5 text-white" />
                   </div>
                   <div className="hidden md:block min-w-0">
