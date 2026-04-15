@@ -1,11 +1,19 @@
-import React from 'react'
+import React from "react";
+import { useState } from "react";
 
-const Login = () => {
+const Login = async () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+
   return (
-    <div>
-      loginpage
-    </div>
-  )
-}
+    <>
+      <div className="">
+        
+      </div>
+    </>
+  );
+};
 
-export default Login
+export default Login;
