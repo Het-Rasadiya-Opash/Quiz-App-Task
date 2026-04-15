@@ -1,13 +1,21 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import apiRequest from "../utils/apiRequest";
 
-const QuizData = ({ quiz }) => {
+const QuizData = ({ quiz, onDelete }) => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.users);
 
   const minutes = quiz.timeLimitSec ? Math.floor(quiz.timeLimitSec / 60) : null;
   const seconds = quiz.timeLimitSec ? quiz.timeLimitSec % 60 : null;
+
+  const handleDeleteQuiz = async () => {
+    try {
+      await apiRequest.delete(`/quiz/delete/${quiz._id}`);
+      onDelete(quiz._id);
+    } catch (error) {}
+  };
 
   return (
     <div className="bg-white border   p-6 flex flex-col gap-4">
@@ -15,10 +23,16 @@ const QuizData = ({ quiz }) => {
         <h3 className="text-base font-bold text-slate-900 ">{quiz.title}</h3>
         {currentUser.user.role === "admin" && (
           <>
-            <button className=" text-xs font-semibold px-2.5 py-1  text-amber-600 ">
+            <button
+              onClick={() => navigate(`/edit-quiz/${quiz._id}`)}
+              className=" text-xs font-semibold px-2.5 py-1  text-amber-600 "
+            >
               edit
             </button>
-            <button className=" text-xs font-semibold px-2.5 py-1  text-red-600 ">
+            <button
+              onClick={handleDeleteQuiz}
+              className=" text-xs font-semibold px-2.5 py-1  text-red-600 "
+            >
               Delete
             </button>
           </>

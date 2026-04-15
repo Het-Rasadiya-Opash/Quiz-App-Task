@@ -104,3 +104,21 @@ export const getQuiz = async (req, res) => {
     });
   }
 };
+
+export const getQuizById = async (req, res) => {
+  try {
+    const { quizId } = req.params;
+    const getQuiz = await quizModel
+      .findById(quizId)
+    return res.status(200).json({
+      success: true,
+      message: "Quiz fetch successfully",
+      data: getQuiz,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Internal Server Error - Fetch Quiz",
+    });
+  }
+};
