@@ -87,7 +87,6 @@ export const deleteQuiz = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error - Delete Quiz",
-      error: error.message,
     });
   }
 };
@@ -104,7 +103,7 @@ export const getQuiz = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error - Fetch Quiz",
-      error: error.message,
+      
     });
   }
 };
