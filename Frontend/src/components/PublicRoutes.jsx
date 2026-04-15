@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { Loader2 } from "lucide-react";
 
-const ProtectedRoutes = ({ children }) => {
+const PublicRoutes = ({ children }) => {
   const { currentUser, isCheckingAuth } = useSelector((state) => state.users);
 
   if (isCheckingAuth) {
@@ -14,7 +14,7 @@ const ProtectedRoutes = ({ children }) => {
     );
   }
 
-  return currentUser ? children : <Navigate to="/login"  />;
+  return currentUser ? <Navigate to="/"  /> : children;
 };
 
-export default ProtectedRoutes;
+export default PublicRoutes;

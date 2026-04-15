@@ -26,7 +26,7 @@ export const registerUser = async (req, res) => {
         expiresIn: "3d",
       },
     );
-    res.cookie("token", token);
+    res.cookie("token", token, { httpOnly: true, sameSite: "lax" });
 
     res.status(201).json({
       success: true,
@@ -79,7 +79,7 @@ export const loginUser = async (req, res) => {
         expiresIn: "3d",
       },
     );
-    res.cookie("token", token);
+    res.cookie("token", token, { httpOnly: true, sameSite: "lax" });
 
     res.status(200).json({
       success: true,

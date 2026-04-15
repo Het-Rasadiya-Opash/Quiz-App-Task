@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import apiRequest from "../../../../PostgreSQL/PERN-Project/frontend/src/utils/apiRequest";
+import apiRequest from "../utils/apiRequest";
 import {
   setCurrentUser,
   setLoading,
@@ -28,13 +28,7 @@ const Login = () => {
         password,
       });
 
-      dispatch(
-        setCurrentUser({
-          id: response.data.user._id,
-          email: response.data.user.email,
-          role: response.data.user.role,
-        }),
-      );
+      dispatch(setCurrentUser(response.data));
       setEmail("");
       setPassword("");
       navigate("/");
