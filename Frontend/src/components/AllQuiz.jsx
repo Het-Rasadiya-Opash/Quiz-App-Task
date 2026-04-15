@@ -34,7 +34,7 @@ const AllQuiz = () => {
         </div>
         {currentUser?.user?.role === "admin" && (
           <Link to="/create-quiz">
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl shadow-md shadow-blue-500/25 active:scale-95 transition-all duration-200">
+            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600  text-white text-sm font-semibold rounded-xl shadow-md shadow-blue-500/25 ">
               Create Quiz
             </button>
           </Link>
@@ -45,11 +45,7 @@ const AllQuiz = () => {
         <div className="flex items-center justify-center py-24">Loading</div>
       )}
 
-      {error && (
-        <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
-          <span className="text-sm font-medium">{error}</span>
-        </div>
-      )}
+      {error && <span className="text-sm font-medium">{error}</span>}
 
       {!loading && !error && quizzes.length === 0 && (
         <div className="flex flex-col items-center justify-center py-24 text-slate-400">

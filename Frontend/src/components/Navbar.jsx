@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../utils/apiRequest";
 import {
-  setCurrentUser,
-  setCheckingAuth,
+  
   logout,
 } from "../features/usersSlice";
 

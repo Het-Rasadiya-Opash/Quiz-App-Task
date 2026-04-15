@@ -1,16 +1,29 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const QuizData = ({ quiz }) => {
+  const { currentUser } = useSelector((state) => state.users);
+
   const minutes = quiz.timeLimitSec ? Math.floor(quiz.timeLimitSec / 60) : null;
   const seconds = quiz.timeLimitSec ? quiz.timeLimitSec % 60 : null;
 
   return (
-    <div className="bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 p-6 flex flex-col gap-4">
+    <div className="bg-white border   p-6 flex flex-col gap-4">
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-base font-bold text-slate-900 leading-snug">
+        <h3 className="text-base font-bold text-slate-900 ">
           {quiz.title}
         </h3>
-        <span className="shrink-0 text-xs font-semibold px-2.5 py-1 bg-blue-50 text-blue-600 ">
+        {currentUser.user.role === "admin" && (
+          <>
+            <button className=" text-xs font-semibold px-2.5 py-1  text-amber-600 ">
+              edit
+            </button>
+            <button className=" text-xs font-semibold px-2.5 py-1  text-red-600 ">
+              Delete
+            </button>
+          </>
+        )}
+        <span className=" text-xs font-semibold px-2.5 py-1  text-blue-600 ">
           {quiz.createdBy?.role}
         </span>
       </div>
@@ -35,7 +48,7 @@ const QuizData = ({ quiz }) => {
         </div>
       </div>
 
-      <button className="mt-auto flex items-center justify-center gap-2 w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl active:scale-95 transition-all duration-200 shadow-sm shadow-blue-500/20">
+      <button className="mt-auto flex items-center justify-center gap-2 w-full py-2.5 bg-blue-600  text-white text-sm font-semibold rounded-xl ">
         Start Quiz
       </button>
     </div>
