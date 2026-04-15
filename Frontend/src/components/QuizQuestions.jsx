@@ -101,7 +101,6 @@ const QuizQuestions = () => {
       <div className="min-h-screen bg-slate-50 py-10 px-4">
         <div className="max-w-2xl mx-auto">
 
-          {/* Score card */}
           <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8 text-center mb-8">
             <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle2 className="w-8 h-8 text-blue-600" />
@@ -113,7 +112,6 @@ const QuizQuestions = () => {
             </div>
           </div>
 
-          {/* Leaderboard */}
           <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6">
             <div className="flex items-center gap-2 mb-4">
               <Trophy className="w-5 h-5 text-yellow-500" />
