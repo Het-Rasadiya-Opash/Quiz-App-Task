@@ -60,7 +60,7 @@ export const editQuiz = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error - Edit Quiz",
-      error: error.message,
+      
     });
   }
 };

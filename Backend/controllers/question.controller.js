@@ -112,7 +112,7 @@ export const deleteQuestion = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Server Error - Deleted Question",
-      error: error.message,
+      
     });
   }
 };
