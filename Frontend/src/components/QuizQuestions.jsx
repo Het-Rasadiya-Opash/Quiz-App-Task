@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import apiRequest from "../utils/apiRequest";
+import { useSelector } from "react-redux";
 
 const QuizQuestions = () => {
+  const { currentUser } = useSelector((state) => state.users);
+
   const { quizId } = useParams();
   const navigate = useNavigate();
   const [questions, setQuestions] = useState([]);
@@ -35,6 +38,11 @@ const QuizQuestions = () => {
       <button onClick={() => navigate(-1)} className="text-sm  mb-6 block">
         ← Back
       </button>
+      {currentUser.user.role === "admin" && (
+        <Link to={`/create-question/${quizId}`}>
+          <button>Cretae a Question</button>
+        </Link>
+      )}
 
       {questions.length === 0 ? (
         <p className="text-center text-slate-400 mt-20">

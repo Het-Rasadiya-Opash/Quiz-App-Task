@@ -5,7 +5,7 @@ export const createQuestion = async (req, res) => {
     const { quizId } = req.params;
     const { text, options, correctIndex } = req.body;
 
-    if (!text || !options || !correctIndex) {
+    if (!text || !options || typeof correctIndex !== "number") {
       return res.status(400).json({
         success: false,
         message: "text, options, and correctIndex are required",

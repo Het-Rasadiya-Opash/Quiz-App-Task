@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar";
 import CreateQuizForm from "./components/CreateQuizForm";
 import QuizQuestions from "./components/QuizQuestions";
 import EditQuizForm from "./components/EditQuizForm";
+import CreateQuestionForm from "./components/CreateQuestionForm";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -77,6 +78,15 @@ const App = () => {
           element={
             <ProtectedRoutes>
               <QuizQuestions />
+            </ProtectedRoutes>
+          }
+        />
+
+        <Route
+          path="/create-question/:quizId"
+          element={
+            <ProtectedRoutes>
+              <CreateQuestionForm />
             </ProtectedRoutes>
           }
         />
