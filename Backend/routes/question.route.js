@@ -10,6 +10,7 @@ import {
 } from "../controllers/question.controller.js";
 
 router.get("/", getQuestion);
+router.get("/:quizId", getQuestion);
 
 router.post(
   "/create/:quizId",

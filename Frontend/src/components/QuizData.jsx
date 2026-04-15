@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const QuizData = ({ quiz }) => {
+  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.users);
 
   const minutes = quiz.timeLimitSec ? Math.floor(quiz.timeLimitSec / 60) : null;
@@ -10,9 +12,7 @@ const QuizData = ({ quiz }) => {
   return (
     <div className="bg-white border   p-6 flex flex-col gap-4">
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-base font-bold text-slate-900 ">
-          {quiz.title}
-        </h3>
+        <h3 className="text-base font-bold text-slate-900 ">{quiz.title}</h3>
         {currentUser.user.role === "admin" && (
           <>
             <button className=" text-xs font-semibold px-2.5 py-1  text-amber-600 ">
@@ -48,7 +48,10 @@ const QuizData = ({ quiz }) => {
         </div>
       </div>
 
-      <button className="mt-auto flex items-center justify-center gap-2 w-full py-2.5 bg-blue-600  text-white text-sm font-semibold rounded-xl ">
+      <button
+        onClick={() => navigate(`/quiz/${quiz._id}`)}
+        className="mt-auto flex items-center justify-center gap-2 w-full py-2.5 bg-blue-600  text-white text-sm font-semibold rounded-xl "
+      >
         Start Quiz
       </button>
     </div>

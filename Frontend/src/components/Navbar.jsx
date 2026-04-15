@@ -2,10 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import apiRequest from "../utils/apiRequest";
-import {
-  
-  logout,
-} from "../features/usersSlice";
+import { logout } from "../features/usersSlice";
 
 const Navbar = () => {
   const { currentUser, isCheckingAuth } = useSelector((state) => state.users);
@@ -34,7 +31,6 @@ const Navbar = () => {
             {isCheckingAuth ? null : currentUser ? (
               <>
                 <div className="flex items-center space-x-3">
-                 
                   <div className="hidden md:block min-w-0">
                     <p className="text-sm font-medium text-slate-900 truncate">
                       {currentUser.user.email}
@@ -46,7 +42,7 @@ const Navbar = () => {
                 </div>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 md:flex whitespace-nowrap"
+                  className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-red-100  text-slate-700 border border-slate-200 "
                   title="Logout"
                 >
                   Logout

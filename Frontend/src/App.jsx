@@ -10,6 +10,7 @@ import { setCurrentUser, setCheckingAuth } from "./features/usersSlice";
 import apiRequest from "./utils/apiRequest";
 import Navbar from "./components/Navbar";
 import CreateQuizForm from "./components/CreateQuizForm";
+import QuizQuestions from "./components/QuizQuestions";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -59,6 +60,14 @@ const App = () => {
           element={
             <ProtectedRoutes>
               <CreateQuizForm />
+            </ProtectedRoutes>
+          }
+        />
+        <Route
+          path="/quiz/:quizId"
+          element={
+            <ProtectedRoutes>
+              <QuizQuestions />
             </ProtectedRoutes>
           }
         />

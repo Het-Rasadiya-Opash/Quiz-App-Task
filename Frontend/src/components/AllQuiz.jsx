@@ -41,19 +41,13 @@ const AllQuiz = () => {
         )}
       </div>
 
-      {loading && (
-        <div className="flex items-center justify-center py-24">Loading</div>
-      )}
-
-      {error && <span className="text-sm font-medium">{error}</span>}
-
-      {!loading && !error && quizzes.length === 0 && (
+      {quizzes.length === 0 && (
         <div className="flex flex-col items-center justify-center py-24 text-slate-400">
           <p className="text-sm font-medium">No quizzes available yet</p>
         </div>
       )}
 
-      {!loading && !error && quizzes.length > 0 && (
+      {quizzes.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {quizzes.map((quiz) => (
             <QuizData key={quiz._id} quiz={quiz} />

@@ -56,13 +56,12 @@ export const editQuestion = async (req, res) => {
       },
     );
     if (!updatedQuestion) {
-      return res.status(500).json({
+      return res.status(404).json({
         success: false,
         message: "Question not found for this id",
-       
       });
     }
-    res.status(500).json({
+    res.status(200).json({
       success: true,
       message: "Question updated successfully",
       data: updatedQuestion,
@@ -78,8 +77,10 @@ export const editQuestion = async (req, res) => {
 
 export const getQuestion = async (req, res) => {
   try {
-    const questions = await questionModel.find();
-    res.status(500).json({
+    const { quizId } = req.params;
+    const filter = quizId ? { quizId } : {};
+    const questions = await questionModel.find(filter);
+    res.status(200).json({
       success: true,
       message: "Question Fetch successfully",
       data: questions,
@@ -88,7 +89,6 @@ export const getQuestion = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Server Error - Fetch Question",
-    
     });
   }
 };
@@ -99,12 +99,12 @@ export const deleteQuestion = async (req, res) => {
 
     const deletedQuestion = await questionModel.findByIdAndDelete(questionId);
     if (!deletedQuestion) {
-      return res.status(500).json({
+      return res.status(404).json({
         success: false,
         message: "Question not found for this id",
       });
     }
-    res.status(500).json({
+    res.status(200).json({
       success: true,
       message: "Question Deleted successfully",
     });
