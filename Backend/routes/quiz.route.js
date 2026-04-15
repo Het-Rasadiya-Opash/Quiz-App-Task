@@ -9,9 +9,12 @@ import {
   getQuiz,
   getQuizById,
 } from "../controllers/quiz.controller.js";
+import { startAttempt, getLeaderboard } from "../controllers/attempt.controller.js";
 
 router.get("/", getQuiz);
 router.get("/:quizId", getQuizById);
+router.post("/:quizId/start", authMiddleware, startAttempt);
+router.get("/:quizId/leaderboard", authMiddleware, getLeaderboard);
 
 router.post("/create", authMiddleware, authorizeRole("admin"), createQuiz);
 router.post("/edit/:quizId", authMiddleware, authorizeRole("admin"), editQuiz);
