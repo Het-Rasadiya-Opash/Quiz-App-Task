@@ -1,5 +1,4 @@
 import React from "react";
-import { Clock, User } from "lucide-react";
 
 const QuizData = ({ quiz }) => {
   const minutes = quiz.timeLimitSec ? Math.floor(quiz.timeLimitSec / 60) : null;
@@ -9,7 +8,7 @@ const QuizData = ({ quiz }) => {
     <div className="bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 p-6 flex flex-col gap-4">
       <div className="flex items-start justify-between gap-2">
         <h3 className="text-base font-bold text-slate-900 leading-snug">{quiz.title}</h3>
-        <span className="shrink-0 text-xs font-semibold px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full capitalize">
+        <span className="shrink-0 text-xs font-semibold px-2.5 py-1 bg-blue-50 text-blue-600 ">
           {quiz.createdBy?.role || "—"}
         </span>
       </div>
@@ -17,20 +16,19 @@ const QuizData = ({ quiz }) => {
       <div className="flex flex-col gap-2">
         {quiz.timeLimitSec ? (
           <div className="flex items-center gap-2 text-slate-500 text-sm">
-            <Clock className="w-4 h-4 shrink-0" />
+            Time -
             <span>
               {minutes > 0 && `${minutes}m `}{seconds > 0 && `${seconds}s`}
             </span>
           </div>
         ) : (
           <div className="flex items-center gap-2 text-slate-400 text-sm">
-            <Clock className="w-4 h-4 shrink-0" />
             <span>No time limit</span>
           </div>
         )}
 
         <div className="flex items-center gap-2 text-slate-500 text-sm">
-          <User className="w-4 h-4 shrink-0" />
+          CreatedBy -
           <span className="truncate">{quiz.createdBy?.email || "Unknown"}</span>
         </div>
       </div>

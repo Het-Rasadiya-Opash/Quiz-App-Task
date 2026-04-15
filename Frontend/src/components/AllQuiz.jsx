@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import apiRequest from "../utils/apiRequest";
 import QuizData from "./QuizData";
 import { Link } from "react-router-dom";
-import { ClipboardList, Loader2, AlertCircle, PlusCircle } from "lucide-react";
 
 const AllQuiz = () => {
   const { currentUser } = useSelector((state) => state.users);
@@ -36,7 +35,6 @@ const AllQuiz = () => {
         {currentUser?.user?.role === "admin" && (
           <Link to="/create-quiz">
             <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl shadow-md shadow-blue-500/25 active:scale-95 transition-all duration-200">
-            
               Create Quiz
             </button>
           </Link>
@@ -44,14 +42,11 @@ const AllQuiz = () => {
       </div>
 
       {loading && (
-        <div className="flex items-center justify-center py-24">
-          <Loader2 className="animate-spin w-8 h-8 text-blue-600" />
-        </div>
+        <div className="flex items-center justify-center py-24">Loading</div>
       )}
 
       {error && (
         <div className="flex items-center gap-3 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700">
-          <AlertCircle className="w-5 h-5 shrink-0" />
           <span className="text-sm font-medium">{error}</span>
         </div>
       )}
