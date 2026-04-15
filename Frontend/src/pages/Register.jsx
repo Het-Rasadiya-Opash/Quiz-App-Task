@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import apiRequest from "../utils/apiRequest";
 import {
@@ -17,6 +17,10 @@ const Register = () => {
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.users);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    return () => dispatch(clearError());
+  }, [email,password]);
 
   const handleRegister = async (e) => {
     e.preventDefault();
