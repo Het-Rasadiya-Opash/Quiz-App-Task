@@ -86,3 +86,17 @@ export const loginUser = async (req, res) => {
     });
   } catch (error) {}
 };
+
+export const logoutUser = async (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(400).json({
+      message: "Logged out ",
+    });
+  }
+  res.cookie("token", "");
+  res.clearCookie("token");
+  res.status(200).json({
+    message: "Logged out successfully",
+  });
+};
