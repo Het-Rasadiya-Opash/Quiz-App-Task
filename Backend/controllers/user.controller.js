@@ -19,9 +19,13 @@ export const registerUser = async (req, res) => {
       password,
     });
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "3d",
-    });
+    const token = jwt.sign(
+      { userId: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "3d",
+      },
+    );
     res.cookie("token", token);
 
     res.status(201).json({
@@ -68,9 +72,13 @@ export const loginUser = async (req, res) => {
       });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
-      expiresIn: "3d",
-    });
+    const token = jwt.sign(
+      { userId: user._id, role: user.role },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "3d",
+      },
+    );
     res.cookie("token", token);
 
     res.status(200).json({

@@ -11,6 +11,7 @@ const app = express();
 const PORT = process.env.PORT;
 
 import userRoutes from "./routes/user.route.js";
+import quizRoutes from "./routes/quiz.route.js";
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -23,6 +24,7 @@ app.use(
 );
 
 app.use("/api/user", userRoutes);
+app.use("/api/quiz", quizRoutes);
 
 app.use(errorHandler);
 

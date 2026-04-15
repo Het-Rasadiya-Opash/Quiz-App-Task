@@ -7,7 +7,7 @@ const quizSchema = new mongoose.Schema({
   },
   timeLimitSec: {
     type: Number,
-    default: 30,
+    default: 10,
   },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
@@ -15,6 +15,6 @@ const quizSchema = new mongoose.Schema({
   },
 });
 
-const Quiz = mongoose.model("Quiz", quizSchema);
+const quizModel = mongoose.model("Quiz", quizSchema);
 
-export default Quiz;
+export default quizModel;
