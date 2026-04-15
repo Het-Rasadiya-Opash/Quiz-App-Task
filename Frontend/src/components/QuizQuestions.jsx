@@ -163,7 +163,6 @@ const QuizQuestions = () => {
     <div className="min-h-screen bg-slate-50 py-10 px-4">
       <div className="max-w-2xl mx-auto">
 
-        {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-slate-900">{quiz?.title}</h2>
           <div className="flex items-center gap-3">
