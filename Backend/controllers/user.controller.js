@@ -84,7 +84,13 @@ export const loginUser = async (req, res) => {
       },
       token,
     });
-  } catch (error) {}
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: "Error - Login User",
+      status: "success",
+    });
+  }
 };
 
 export const logoutUser = async (req, res) => {
@@ -99,4 +105,27 @@ export const logoutUser = async (req, res) => {
   res.status(200).json({
     message: "Logged out successfully",
   });
+};
+
+export const getMe = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const user = await userModel.findById(userId);
+    return res.status(200).json({
+      success: true,
+      message: "User Fetch successfully",
+      status: "success",
+      user: {
+        _id: user._id,
+        role: user.role,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    return res.status(500).send({
+      success: false,
+      message: "Error - User fetch",
+      status: "success",
+    });
+  }
 };

@@ -9,6 +9,7 @@ import {
   clearError,
 } from "../features/usersSlice";
 import { Eye, EyeOff, Mail, Lock, Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
   const { loading, error, currentUser } = useSelector((state) => state.users);
-
+  const navigate = useNavigate();
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(clearError());
@@ -36,6 +37,7 @@ const Login = () => {
       );
       setEmail("");
       setPassword("");
+      navigate("/");
     } catch (err) {
       dispatch(
         setError(
