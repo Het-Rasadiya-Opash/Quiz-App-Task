@@ -7,9 +7,11 @@ const QuizData = ({ quiz }) => {
   return (
     <div className="bg-white border border-slate-200 rounded-2xl shadow-sm hover:shadow-md transition-shadow duration-200 p-6 flex flex-col gap-4">
       <div className="flex items-start justify-between gap-2">
-        <h3 className="text-base font-bold text-slate-900 leading-snug">{quiz.title}</h3>
+        <h3 className="text-base font-bold text-slate-900 leading-snug">
+          {quiz.title}
+        </h3>
         <span className="shrink-0 text-xs font-semibold px-2.5 py-1 bg-blue-50 text-blue-600 ">
-          {quiz.createdBy?.role || "—"}
+          {quiz.createdBy?.role}
         </span>
       </div>
 
@@ -18,7 +20,8 @@ const QuizData = ({ quiz }) => {
           <div className="flex items-center gap-2 text-slate-500 text-sm">
             Time -
             <span>
-              {minutes > 0 && `${minutes}m `}{seconds > 0 && `${seconds}s`}
+              {minutes > 0 && `${minutes}m `}
+              {seconds > 0 && `${seconds}s`}
             </span>
           </div>
         ) : (
@@ -28,13 +31,11 @@ const QuizData = ({ quiz }) => {
         )}
 
         <div className="flex items-center gap-2 text-slate-500 text-sm">
-          CreatedBy -
-          <span className="truncate">{quiz.createdBy?.email || "Unknown"}</span>
+          CreatedBy -<span className="truncate">{quiz.createdBy?.email}</span>
         </div>
       </div>
 
       <button className="mt-auto flex items-center justify-center gap-2 w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-xl active:scale-95 transition-all duration-200 shadow-sm shadow-blue-500/20">
-      
         Start Quiz
       </button>
     </div>
