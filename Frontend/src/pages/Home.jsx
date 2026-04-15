@@ -1,7 +1,13 @@
-import React from "react";
+import { useSelector } from "react-redux";
+import Navbar from "../components/Navbar";
 
 const Home = () => {
-  return <div>Home</div>;
+  const { currentUser } = useSelector((state) => state.users);
+  return (
+    <>
+      <Navbar currentUser={currentUser} />
+    </>
+  );
 };
 
 export default Home;
