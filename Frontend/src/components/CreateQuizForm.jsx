@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import apiRequest from "../utils/apiRequest";
-import { ClipboardList, Clock, Loader2, CheckCircle2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const CreateQuizForm = () => {
+  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.users);
   const [title, setTitle] = useState("");
   const [timeLimitSec, setTimeLimitSec] = useState("");
@@ -21,6 +22,7 @@ const CreateQuizForm = () => {
       setSuccess(true);
       setTitle("");
       setTimeLimitSec("");
+      navigate("/");
     } catch (err) {
       setError(err.response?.data?.message || "Failed to create quiz.");
     } finally {
@@ -32,7 +34,6 @@ const CreateQuizForm = () => {
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-lg border border-slate-200 p-8">
         <div className="mb-6">
-          
           <h2 className="text-2xl font-bold text-slate-900">Create Quiz</h2>
           <p className="text-sm text-slate-500 mt-1">
             Fill in the details to create a new quiz
@@ -45,9 +46,6 @@ const CreateQuizForm = () => {
               Quiz Title
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none">
-                <ClipboardList className="w-4 h-4 text-slate-400" />
-              </div>
               <input
                 type="text"
                 value={title}
@@ -64,9 +62,6 @@ const CreateQuizForm = () => {
               Time Limit (seconds)
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none">
-                <Clock className="w-4 h-4 text-slate-400" />
-              </div>
               <input
                 type="number"
                 value={timeLimitSec}
@@ -88,7 +83,6 @@ const CreateQuizForm = () => {
 
           {success && (
             <div className="flex items-center gap-2.5 p-3.5 bg-green-50 border border-green-200 rounded-xl">
-              <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0" />
               <span className="text-xs font-medium text-green-700">
                 Quiz created successfully!
               </span>
@@ -97,17 +91,9 @@ const CreateQuizForm = () => {
 
           <button
             type="submit"
-            disabled={loading}
             className="w-full py-3.5 px-6 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2.5 cursor-pointer disabled:cursor-not-allowed"
           >
-            {loading ? (
-              <>
-                <Loader2 className="animate-spin w-4 h-4" />
-                <span>Creating...</span>
-              </>
-            ) : (
-              <span>Create Quiz</span>
-            )}
+            Create Quiz
           </button>
         </form>
       </div>

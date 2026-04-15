@@ -41,13 +41,7 @@ const Navbar = () => {
                       {currentUser.user.role}
                     </p>
                   </div>
-                  {currentUser.user.role === "admin" && (
-                    <Link to="/create-quiz">
-                      <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all duration-200 shadow-sm hover:shadow-md active:scale-95 md:flex whitespace-nowrap">
-                        Create Quiz
-                      </button>
-                    </Link>
-                  )}
+                 
                 </div>
                 <button
                   onClick={handleLogout}

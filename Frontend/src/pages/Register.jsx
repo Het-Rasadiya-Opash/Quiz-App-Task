@@ -20,7 +20,7 @@ const Register = () => {
 
   useEffect(() => {
     return () => dispatch(clearError());
-  }, [email,password]);
+  }, [email, password]);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -42,7 +42,6 @@ const Register = () => {
             "Registration failed. Please try again.",
         ),
       );
-      
     } finally {
       dispatch(setLoading(false));
     }
@@ -68,15 +67,11 @@ const Register = () => {
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none">
-                  <Mail className="w-4 h-4 text-slate-400" />
-                </div>
                 <input
                   id="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  
                   placeholder="name@company.com"
                   required
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-slate-50 text-slate-900 placeholder:text-slate-400 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:bg-white transition-all duration-200"
@@ -92,9 +87,6 @@ const Register = () => {
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none">
-                  <Lock className="w-4 h-4 text-slate-400" />
-                </div>
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}

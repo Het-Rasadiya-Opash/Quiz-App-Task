@@ -67,9 +67,7 @@ const Login = () => {
                 Email Address
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none">
-                  <Mail className="w-4 h-4 text-slate-400" />
-                </div>
+                
                 <input
                   id="email"
                   type="email"
@@ -90,9 +88,7 @@ const Login = () => {
                 Password
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-3.5 flex items-center pointer-events-none">
-                  <Lock className="w-4 h-4 text-slate-400" />
-                </div>
+               
                 <input
                   id="password"
                   type={showPassword ? "text" : "password"}

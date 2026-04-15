@@ -16,7 +16,6 @@ export const createQuiz = async (req, res) => {
       timeLimitSec,
       createdBy: userId,
     });
-    await quiz.populate("createdBy", "email role");
     return res.status(201).json({
       success: true,
       message: "Quiz Created Successfully",
@@ -60,7 +59,6 @@ export const editQuiz = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error - Edit Quiz",
-      
     });
   }
 };
@@ -93,7 +91,7 @@ export const deleteQuiz = async (req, res) => {
 
 export const getQuiz = async (req, res) => {
   try {
-    const getQuiz = await quizModel.find();
+    const getQuiz = await quizModel.find().populate("createdBy", "email role");
     return res.status(200).json({
       success: true,
       message: "Quiz fetch successfully",
@@ -103,7 +101,6 @@ export const getQuiz = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error - Fetch Quiz",
-      
     });
   }
 };
