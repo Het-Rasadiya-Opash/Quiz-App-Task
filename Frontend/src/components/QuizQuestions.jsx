@@ -54,7 +54,9 @@ const QuizQuestions = () => {
         questionId: q._id,
         selectedIndex: selected[q._id] ?? -1,
       }));
-      const res = await apiRequest.post(`/attempts/${attemptId}/submit`, { answers });
+      const res = await apiRequest.post(`/attempts/${attemptId}/submit`, {
+        answers,
+      });
       setResult(res.data.data);
       const lb = await apiRequest.get(`/quiz/${quizId}/leaderboard`);
       setLeaderboard(lb.data.data);
@@ -67,10 +69,17 @@ const QuizQuestions = () => {
 
   useEffect(() => {
     if (timeLeft === null) return;
-    if (timeLeft <= 0) { handleSubmit(); return; }
+    if (timeLeft <= 0) {
+      handleSubmit();
+      return;
+    }
     timerRef.current = setInterval(() => {
       setTimeLeft((prev) => {
-        if (prev <= 1) { clearInterval(timerRef.current); handleSubmit(); return 0; }
+        if (prev <= 1) {
+          clearInterval(timerRef.current);
+          handleSubmit();
+          return 0;
+        }
         return prev - 1;
       });
     }, 1000);
@@ -78,34 +87,39 @@ const QuizQuestions = () => {
   }, [timeLeft === null ? null : "started", handleSubmit]);
 
   const formatTime = (sec) => {
-    const m = Math.floor(sec / 60).toString().padStart(2, "0");
+    const m = Math.floor(sec / 60)
+      .toString()
+      .padStart(2, "0");
     const s = (sec % 60).toString().padStart(2, "0");
     return `${m}:${s}`;
   };
 
-  if (loading) return (
-    <div className="flex items-center justify-center min-h-screen">
-      <Loader2 className="animate-spin w-8 h-8 text-blue-600" />
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <Loader2 className="animate-spin w-8 h-8 text-blue-600" />
+      </div>
+    );
 
-  if (error) return (
-    <div className="flex items-center justify-center min-h-screen">
-      <p className="text-red-500 font-medium">{error}</p>
-    </div>
-  );
+  if (error)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-red-500 font-medium">{error}</p>
+      </div>
+    );
 
   // Result + Leaderboard screen
   if (result) {
     return (
       <div className="min-h-screen bg-slate-50 py-10 px-4">
         <div className="max-w-2xl mx-auto">
-
           <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8 text-center mb-8">
             <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle2 className="w-8 h-8 text-blue-600" />
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 mb-1">Quiz Completed!</h2>
+            <h2 className="text-2xl font-bold text-slate-900 mb-1">
+              Quiz Completed!
+            </h2>
             <p className="text-slate-500 text-sm mb-4">Here's how you did</p>
             <div className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-bold text-lg">
               {result.score} / {result.total}
@@ -115,7 +129,9 @@ const QuizQuestions = () => {
           <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6">
             <div className="flex items-center gap-2 mb-4">
               <Trophy className="w-5 h-5 text-yellow-500" />
-              <h3 className="text-base font-bold text-slate-900">Leaderboard</h3>
+              <h3 className="text-base font-bold text-slate-900">
+                Leaderboard
+              </h3>
             </div>
 
             {leaderboard.length === 0 ? (
@@ -124,21 +140,38 @@ const QuizQuestions = () => {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-slate-200">
-                    <th className="text-left py-2 px-3 text-slate-500 font-semibold">#</th>
-                    <th className="text-left py-2 px-3 text-slate-500 font-semibold">Email</th>
-                    <th className="text-left py-2 px-3 text-slate-500 font-semibold">Score</th>
-                    <th className="text-left py-2 px-3 text-slate-500 font-semibold">Time</th>
+                    <th className="text-left py-2 px-3 text-slate-500 font-semibold">
+                      #
+                    </th>
+                    <th className="text-left py-2 px-3 text-slate-500 font-semibold">
+                      Email
+                    </th>
+                    <th className="text-left py-2 px-3 text-slate-500 font-semibold">
+                      Score
+                    </th>
+                    <th className="text-left py-2 px-3 text-slate-500 font-semibold">
+                      Time
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {leaderboard.map((entry, i) => (
-                    <tr key={i} className={i % 2 === 0 ? "bg-slate-50" : "bg-white"}>
+                    <tr
+                      key={i}
+                      className={i % 2 === 0 ? "bg-slate-50" : "bg-white"}
+                    >
                       <td className="py-2 px-3 font-bold text-slate-700">
-                        {i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : i + 1}
+                        {i === 0 ? "1" : i === 1 ? "2" : i === 2 ? "3" : i + 1}
                       </td>
-                      <td className="py-2 px-3 text-slate-700">{entry.email}</td>
-                      <td className="py-2 px-3 font-semibold text-blue-600">{entry.score}</td>
-                      <td className="py-2 px-3 text-slate-500">{(entry.timeTaken / 1000).toFixed(1)}s</td>
+                      <td className="py-2 px-3 text-slate-700">
+                        {entry.email}
+                      </td>
+                      <td className="py-2 px-3 font-semibold text-blue-600">
+                        {entry.score}
+                      </td>
+                      <td className="py-2 px-3 text-slate-500">
+                        {(entry.timeTaken / 1000).toFixed(1)}s
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -160,7 +193,6 @@ const QuizQuestions = () => {
   return (
     <div className="min-h-screen bg-slate-50 py-10 px-4">
       <div className="max-w-2xl mx-auto">
-
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-slate-900">{quiz?.title}</h2>
           <div className="flex items-center gap-3">
@@ -173,11 +205,13 @@ const QuizQuestions = () => {
               </Link>
             )}
             {timeLeft !== null && (
-              <span className={`flex items-center gap-1.5 font-bold text-sm px-3 py-1.5 rounded-full border ${
-                timeLeft <= 10
-                  ? "text-red-600 bg-red-50 border-red-200 animate-pulse"
-                  : "text-slate-700 bg-white border-slate-200"
-              }`}>
+              <span
+                className={`flex items-center gap-1.5 font-bold text-sm px-3 py-1.5 rounded-full border ${
+                  timeLeft <= 10
+                    ? "text-red-600 bg-red-50 border-red-200 animate-pulse"
+                    : "text-slate-700 bg-white border-slate-200"
+                }`}
+              >
                 <Clock className="w-4 h-4" />
                 {formatTime(timeLeft)}
               </span>
@@ -186,11 +220,16 @@ const QuizQuestions = () => {
         </div>
 
         {questions.length === 0 ? (
-          <p className="text-center text-slate-400 mt-20">No questions available.</p>
+          <p className="text-center text-slate-400 mt-20">
+            No questions available.
+          </p>
         ) : (
           <div className="space-y-6">
             {questions.map((question, index) => (
-              <div key={question._id} className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6">
+              <div
+                key={question._id}
+                className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6"
+              >
                 <p className="font-semibold text-slate-900 mb-4">
                   {index + 1}. {question.text}
                 </p>
@@ -200,20 +239,31 @@ const QuizQuestions = () => {
                     return (
                       <button
                         key={i}
-                        onClick={() => setSelected((prev) => ({ ...prev, [question._id]: i }))}
+                        onClick={() =>
+                          setSelected((prev) => ({
+                            ...prev,
+                            [question._id]: i,
+                          }))
+                        }
                         className={`w-full text-left flex items-center gap-3 px-4 py-3 rounded-xl border text-sm font-medium transition-all duration-150 ${
                           isSelected
                             ? "border-blue-500 bg-blue-50 text-blue-700"
                             : "border-slate-200 bg-slate-50 text-slate-700 hover:border-blue-300 hover:bg-blue-50/50"
                         }`}
                       >
-                        <span className={`w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold shrink-0 ${
-                          isSelected ? "bg-blue-600 text-white" : "bg-slate-200 text-slate-600"
-                        }`}>
+                        <span
+                          className={`w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold shrink-0 ${
+                            isSelected
+                              ? "bg-blue-600 text-white"
+                              : "bg-slate-200 text-slate-600"
+                          }`}
+                        >
                           {LABELS[i]}
                         </span>
                         {option}
-                        {isSelected && <CheckCircle2 className="w-4 h-4 ml-auto text-blue-500 shrink-0" />}
+                        {isSelected && (
+                          <CheckCircle2 className="w-4 h-4 ml-auto text-blue-500 shrink-0" />
+                        )}
                       </button>
                     );
                   })}
@@ -227,7 +277,9 @@ const QuizQuestions = () => {
               className="w-full py-3.5 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-bold text-sm rounded-xl transition-colors flex items-center justify-center gap-2"
             >
               {submitting ? (
-                <><Loader2 className="animate-spin w-4 h-4" /> Submitting...</>
+                <>
+                  <Loader2 className="animate-spin w-4 h-4" /> Submitting...
+                </>
               ) : (
                 `Submit (${Object.keys(selected).length}/${questions.length} answered)`
               )}

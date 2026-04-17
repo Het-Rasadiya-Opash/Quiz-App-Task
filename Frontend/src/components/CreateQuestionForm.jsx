@@ -54,7 +54,6 @@ const CreateQuestionForm = () => {
 
         <form onSubmit={handleSubmit} className="space-y-5">
 
-          {/* Question text */}
           <div className="space-y-1.5">
             <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider">
               Question Text
@@ -69,7 +68,6 @@ const CreateQuestionForm = () => {
             />
           </div>
 
-          {/* Options */}
           <div className="space-y-1.5">
             <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider">
               Options
@@ -93,7 +91,6 @@ const CreateQuestionForm = () => {
             </div>
           </div>
 
-          {/* Correct answer */}
           <div className="space-y-1.5">
             <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider">
               Correct Answer
