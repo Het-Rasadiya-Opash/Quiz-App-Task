@@ -19,18 +19,16 @@
 
 ### Backend Setup
 
-```bash
+
 cd Backend
 npm install
-```
+
 
 Create a `.env` file:
 
-```env
 PORT=3000
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret
-```
 
 Start the server:
 
