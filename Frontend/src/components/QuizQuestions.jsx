@@ -108,7 +108,6 @@ const QuizQuestions = () => {
       </div>
     );
 
-  // Result + Leaderboard screen
   if (result) {
     return (
       <div className="min-h-screen bg-slate-50 py-10 px-4">
@@ -196,14 +195,7 @@ const QuizQuestions = () => {
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-slate-900">{quiz?.title}</h2>
           <div className="flex items-center gap-3">
-            {currentUser?.user?.role === "admin" && (
-              <Link
-                to={`/create-question/${quizId}`}
-                className="text-sm font-semibold text-blue-600 hover:underline"
-              >
-                + Add Question
-              </Link>
-            )}
+           
             {timeLeft !== null && (
               <span
                 className={`flex items-center gap-1.5 font-bold text-sm px-3 py-1.5 rounded-full border ${

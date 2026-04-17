@@ -1,9 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import apiRequest from "../utils/apiRequest";
 
 const QuizData = ({ quiz, onDelete }) => {
+    const { quizId } = useParams();
+
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.users);
 
@@ -35,6 +37,15 @@ const QuizData = ({ quiz, onDelete }) => {
             >
               Delete
             </button>
+
+            {currentUser?.user?.role === "admin" && (
+              <Link
+                to={`/create-question/${quizId}`}
+                className="text-sm font-semibold text-blue-600 hover:underline"
+              >
+                Add Question
+              </Link>
+            )}
           </>
         )}
         <span className=" text-xs font-semibold px-2.5 py-1  text-blue-600 ">
